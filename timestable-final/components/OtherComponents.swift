@@ -7,14 +7,17 @@
 
 import SwiftUI
 
-struct OtherComponents: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+extension Double {
+    func round(nearest: Double) -> Double {
+        let n = 1/nearest
+        let numberToRound = self * n
+        return numberToRound.rounded() / n
+    }
+
+    func floor(nearest: Double) -> Double {
+        let intDiv = Double(Int(self / nearest))
+        return intDiv * nearest
     }
 }
 
-struct OtherComponents_Previews: PreviewProvider {
-    static var previews: some View {
-        OtherComponents()
-    }
-}
+

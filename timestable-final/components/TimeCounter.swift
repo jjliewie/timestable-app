@@ -7,14 +7,32 @@
 
 import SwiftUI
 
-struct TimeCounter: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+// time counter
+class TimeCounter: ObservableObject {
+    @Published var time = 0.0
+    
+    lazy var timer = Timer()
+    
+    func start(){
+        
+        time = 0.0
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { timer in
+            self.time = self.time + 0.1
+        }
     }
-}
+    
+    func stop() {
+        timer.invalidate()
+        time = 0.0
+    }
+    
+    func pause() {
+        timer.invalidate()
+    }
 
-struct TimeCounter_Previews: PreviewProvider {
-    static var previews: some View {
-        TimeCounter()
+    init() {
+        start()
+        
     }
 }
